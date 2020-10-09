@@ -16,12 +16,34 @@ docker build -t airlines .
 
 ###########################################
 #GENERATE MODELS
+#docker run -itP -v $(pwd):/app -p 9000:9000 airlines /bin/bash
 rails g model Airline name image_url slug
 
 rails g model Review title description score:integer airline:belongs_to
 
 rails db:migrate
 
-# IN airline.rb
-  has_many :reviews
+rails db:seed
+
+#Fast serializer
+https://github.com/Netflix/fast_jsonapi
+#Gemfile
+gem 'fast_jsonapi'
+
+rails g serializer Airline name image_url slug
+
+rails g serializer Review title description score airline_id
+
+#test in console:
+AirlineSerializer.new(a).serialized_json
+
+# modify routes
+
+# Create Controllers
+
+
+
+
+
+
 
