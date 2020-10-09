@@ -1,0 +1,27 @@
+#Genarate clean docker image for rails-react
+#Partire da template base di Docker e lanciare con bash
+docker build -t airlines -f Dockerfile_create_app .
+
+#lanciare l'immagine docker
+docker run -itP -v $(pwd):/app -p 9000:9000 airlines
+
+#una volta dentro docker creare l'app con webpack
+rails new . --webpack=react -T
+
+#Restore owner for docker-generated files on the host
+chown -R pi.pi .
+
+#Build again the image with the current/working Dockerfile
+docker build -t airlines .
+
+###########################################
+#GENERATE MODELS
+rails g model Airline name image_url slug
+
+rails g model Review title description score:integer airline:belongs_to
+
+rails db:migrate
+
+# IN airline.rb
+  has_many :reviews
+

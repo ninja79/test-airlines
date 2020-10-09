@@ -1,24 +1,10 @@
-FROM ninja79/rails
+FROM ninja79/rails-react:latest
 LABEL maintainer="ninja79@github.com"
 # Install apt based dependencies required to run Rails as
 # well as RubyGems. As the Ruby image itself is based on a
 # Debian image, we use apt-get to install those.
 
 #RUN apt-get update && apt-get install -y curl
-
-#Per YARN serve un repo apposito
-#RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg |  apt-key add -
-#RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" > /etc/apt/sources.list.d/yarn.list
-
-
-#RUN apt-get update && apt-get install -y yarn
-
-#RUN apt-get update && apt-get install -y \
-#  build-essential \
-#  nodejs \
-#  patch ruby-dev zlib1g-dev liblzma-dev \
-#  && apt-get clean
-# yarn\
 
 # Configure the main working directory. This is the base
 # directory used in any further RUN, COPY, and ENTRYPOINT
@@ -37,18 +23,17 @@ WORKDIR /app
 # are made.
 COPY Gemfile Gemfile.lock ./
 
-#RUN gem install bundler && bundle install --jobs 20 --retry 5
+RUN gem install bundler && bundle install --jobs 20 --retry 5
 
 # Copy the main application.
 COPY . ./
 
 #Upgrade db version if any upgrade occurred
-#RUN bundle exec rake db:migrate RAILS_ENV=development 
 RUN bundle exec rake db:migrate RAILS_ENV=development 
 
 #Perform webpacker installation and other stuff
-RUN rails webpacker:install
-RUN yarn install --check-files
+#RUN rails webpacker:install
+#RUN yarn install --check-files
 
 # Expose port 9000 to the Docker host, so we can access it
 # from the outside.
