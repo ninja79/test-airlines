@@ -29,8 +29,10 @@ RUN gem install bundler && bundle install --jobs 20 --retry 5
 COPY . ./
 
 #Perform webpacker installation and other stuff
-RUN rails webpacker:install
-RUN yarn install --check-files
+# This is done in the rails-react docker image!
+#RUN rails webpacker:install
+#RUN yarn install --check-files
+#RUN yarn add react-router-dom
 
 #Upgrade db version if any upgrade occurred
 RUN bundle exec rake db:migrate RAILS_ENV=development 

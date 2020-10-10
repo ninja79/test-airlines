@@ -52,4 +52,9 @@ hello_react in application.html
 #rails new newapp2 --webpack=react
 #rails webpacker:install:react
 
+-------
+
+#Create dir javascript Components with js files
+
+
 
