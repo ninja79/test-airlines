@@ -34,6 +34,7 @@ RUN gem install bundler && bundle install --jobs 20 --retry 5
 RUN rails webpacker:install
 RUN yarn install --check-files
 RUN yarn add react-router-dom
+RUN yarn add axios
 
 #Upgrade db version if any upgrade occurred
 #RUN bundle exec rake db:migrate RAILS_ENV=development 
