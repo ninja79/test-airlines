@@ -4,7 +4,7 @@ LABEL maintainer="ninja79@github.com"
 # well as RubyGems. As the Ruby image itself is based on a
 # Debian image, we use apt-get to install those.
 
-#RUN apt-get update && apt-get install -y curl
+#RUN apt-get update && apt-get install -y python2
 
 # Configure the main working directory. This is the base
 # directory used in any further RUN, COPY, and ENTRYPOINT
@@ -28,16 +28,17 @@ RUN gem install bundler && bundle install --jobs 20 --retry 5
 # Copy the main application.
 COPY . ./
 
+#Perform webpacker installation and other stuff
+RUN rails webpacker:install
+RUN yarn install --check-files
+
 #Upgrade db version if any upgrade occurred
 RUN bundle exec rake db:migrate RAILS_ENV=development 
-
-#Perform webpacker installation and other stuff
-#RUN rails webpacker:install
-#RUN yarn install --check-files
 
 # Expose port 9000 to the Docker host, so we can access it
 # from the outside.
 EXPOSE 9000
+
 # The main command to run when the container starts. Also
 # tell the Rails dev server to bind to all interfaces by
 # default.

@@ -40,10 +40,16 @@ AirlineSerializer.new(a).serialized_json
 # modify routes
 
 # Create Controllers
+page controller
+api/v1
+
+##### Video 2
+hello_react in application.html
 
 
-
-
-
+-----
+#???
+#rails new newapp2 --webpack=react
+#rails webpacker:install:react
 
 
