@@ -35,6 +35,7 @@ RUN rails webpacker:install
 RUN yarn install --check-files
 RUN yarn add react-router-dom
 RUN yarn add axios
+RUN yarn add styled-components
 
 #Upgrade db version if any upgrade occurred
 #RUN bundle exec rake db:migrate RAILS_ENV=development 
@@ -51,6 +52,6 @@ RUN yarn add axios
 CMD ["/bin/bash"]
 
 #docker build -t airlines .
-#docker build -t ninja79/rails-react -f Dockerfile_rails_react .
+#docker build -t ninja79/rails-react:v5 -f Dockerfile_rails_react .
 #docker run -itP -v $(pwd):/app -p 9000:9000 airlines
 #docker exec -it $(docker ps -q) /bin/bash
