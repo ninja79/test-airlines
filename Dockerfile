@@ -47,5 +47,5 @@ EXPOSE 9000
 CMD ["bundle", "exec", "rails", "server", "-b", "0.0.0.0", "-p", "9000"]
 
 #docker build -t airlines .
-#docker run -itP -v $(pwd):/app -p 9000:9000 airlines
+#docker run -itP -v $(pwd):/app -p 9000:9000 airlines /bin/bash
 #docker exec -it $(docker ps -q) /bin/bash
