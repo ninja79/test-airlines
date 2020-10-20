@@ -18,7 +18,7 @@ const AirlineLogo =styled.div`
   img{
     height: 50px;
     width: 50px;
-    border-radius: 100%;
+    border-radius: 20%;
     border: 1px solid #efefef;  
   }
 `
