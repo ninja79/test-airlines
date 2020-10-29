@@ -54,7 +54,7 @@ const Airline = (props) => {
     
     //console.log('name:', e.target.name, ' value:', e.target.value)
     setReview(Object.assign({}, review, {[e.target.name]: e.target.value}))
-    console.log('review', review)
+    console.log('Airline#handleChange: review', review)
   }  
 
   const handleSubmit = (e) => {
